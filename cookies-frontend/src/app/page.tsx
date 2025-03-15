@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button"
+import { ContentWrapper, PageWrapper } from "@/components/ui/wrapper"
+import { FindUsSection } from "./_components/find-us-section"
 
 export default function Page() {
   return (
-    <>
-      <div>
-        <h1>Welcome to cookie design system</h1>
-        <Button intent="primary">Coucou maman</Button>
-      </div>
-    </>
+    <PageWrapper>
+      <ContentWrapper className="mt-6">
+        <FindUsSection />
+      </ContentWrapper>
+    </PageWrapper>
   )
 }

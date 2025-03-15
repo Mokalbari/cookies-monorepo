@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/navbar"
-import { bebasNeue } from "@/styles/font"
 import type { Metadata } from "next"
 import "./globals.css"
+import { inter } from "@/styles/font"
 
 export const metadata: Metadata = {
   title: "Le cookie du patron",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${bebasNeue.className} antialiased`}>
+      <body className={`${inter.className} antialiased`}>
         <Navbar />
         {children}
       </body>
