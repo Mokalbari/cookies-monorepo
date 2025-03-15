@@ -62,6 +62,7 @@ export function Button({
   secondaryType,
   children,
   className,
+  ...props
 }: Props) {
   return (
     <button
@@ -69,6 +70,7 @@ export function Button({
         buttonVariants({ intent, cardType, secondaryType }),
         className
       )}
+      {...props}
     >
       {children}
     </button>
