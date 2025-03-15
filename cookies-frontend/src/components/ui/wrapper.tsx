@@ -12,7 +12,7 @@ interface Props extends HTMLAttributes<HTMLElement> {
  */
 export function PageWrapper({ children, className, ...props }: Props) {
   return (
-    <main className={cn("max-w-6xl mx-auto max-sm:px-8", className)} {...props}>
+    <main className={cn("max-w-6xl mx-auto px-8", className)} {...props}>
       {children}
     </main>
   )

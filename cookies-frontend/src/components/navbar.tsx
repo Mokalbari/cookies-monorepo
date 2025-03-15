@@ -1,5 +1,6 @@
 "use client"
 
+import { bebasNeue } from "@/styles/font"
 import { cn } from "@/utils/utils"
 import { Menu, ShoppingCart, X } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
@@ -18,7 +19,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav>
+      <nav className="max-w-[calc(100%-100px)] mx-auto mt-8">
         {/* Desktop version */}
         <div className="max-sm:hidden flex justify-between items-center">
           <div className="relative max-w-32">
@@ -29,7 +30,7 @@ export function Navbar() {
               src={"/logoLCDPblack.png"}
             />
           </div>
-          <MenuList className="flex grow justify-around text-2xl" />
+          <MenuList className="flex grow justify-around sm:text:lg md:text-xl lg:text-2xl" />
           <div className="flex items-center gap-6">
             <Button className="px-8 py-2">Connexion</Button>
             <Button intent="hollow" className="p-0">
@@ -77,7 +78,8 @@ function MenuList({
           <Link
             className={cn(
               "hover:text-dahlia/80 tracking-wider transition-colors",
-              pathname === link.href ? "text-dahlia" : "text-charcoal"
+              pathname === link.href ? "text-dahlia" : "",
+              bebasNeue.className
             )}
             href={link.href}
           >
@@ -95,7 +97,7 @@ function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 100, transition: { duration: 0.25 } }}
       exit={{ x: 200, opacity: 0, transition: { duration: 0.25 } }}
-      className="bg-charcoal/30 p-4 flex flex-col absolute w-full bottom-0 min-h-2/3 z-10"
+      className="bg-linear-to-t from-charcoal to-charcoal/90 p-4 flex flex-col absolute w-full bottom-0 min-h-2/3 z-10"
     >
       <div className="flex items-center justify-end">
         <Button intent="hollow" className="p-0" onClick={handleMenu}>
@@ -104,7 +106,7 @@ function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
       </div>
       <MenuList
         handleMenu={handleMenu}
-        className="mt-8 flex flex-col gap-4 text-2xl items-center"
+        className="mt-8 flex flex-col gap-4 text-2xl items-center text-white"
       />
       <div className="flex items-center justify-center mt-8">
         <div className="flex relative max-w-32">
@@ -112,7 +114,7 @@ function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
             alt="Les cookies du patron"
             width={2048}
             height={2048}
-            src={"/logoLCDPblack.png"}
+            src={"/logoLCDP.png"}
           />
         </div>
       </div>
@@ -120,7 +122,7 @@ function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
         <Button>Connexion</Button>
         <Button
           intent="hollow"
-          className="text-charcoal flex items-center gap-4 justify-center"
+          className="text-white flex items-center gap-4 justify-center"
         >
           <span>
             <ShoppingCart />

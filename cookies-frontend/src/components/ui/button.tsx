@@ -1,9 +1,10 @@
+import { bebasNeue } from "@/styles/font"
 import { cn } from "@/utils/utils"
 import { cva, VariantProps } from "class-variance-authority"
 import { ButtonHTMLAttributes, ReactNode } from "react"
 
 const buttonVariants = cva(
-  "py-3 px-16 text-2xl rounded-sm drop-shadow-md cursor-pointer",
+  `py-3 px-16 text-2xl rounded-sm drop-shadow-md cursor-pointer ${bebasNeue.className}`,
   {
     variants: {
       intent: {

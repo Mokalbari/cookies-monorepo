@@ -40,11 +40,11 @@ export function FindUsSection() {
             – Si tu veux vraiment vivre l&apos;expérience, viens tester nos
             cookies en personne dans notre espace exclusif au 2 Rue des beaufs,
             2344 Pafendall Luxembourg.
-            <p className="mt-4 sm:mt-8">
-              Réservé aux vrais patrons.
-              <br />
-              <span className="underline">Sur invitation uniquement.</span>
-            </p>
+          </p>
+          <p className="mt-4 sm:mt-8">
+            💪 Réservé aux vrais patrons ️♂.
+            <br />
+            <span className="underline">Sur invitation uniquement.</span>
           </p>
         </div>
         <div className="relative w-1/3 min-w-sm max-md:hidden">
