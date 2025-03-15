@@ -1,3 +1,4 @@
+import { Navbar } from "@/components/navbar"
 import { bebasNeue } from "@/styles/font"
 import type { Metadata } from "next"
 import "./globals.css"
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${bebasNeue.className} antialiased`}>{children}</body>
+      <body className={`${bebasNeue.className} antialiased`}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
