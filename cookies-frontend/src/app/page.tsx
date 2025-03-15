@@ -1,3 +1,10 @@
+import { Button } from "@/components/button"
+
 export default function Page() {
-  return <div className="">Welcome to cookie master</div>
+  return (
+    <div>
+      <h1>Welcome to cookie design system</h1>
+      <Button intent="primary">Coucou maman</Button>
+    </div>
+  )
 }
