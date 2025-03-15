@@ -8,7 +8,58 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { Button } from "./ui/button"
 
-function MenuList({ className }: { className?: string }) {
+export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleMenu = () => {
+    setIsOpen((previousState) => !previousState)
+  }
+
+  return (
+    <>
+      <nav>
+        {/* Desktop version */}
+        <div className="max-sm:hidden flex justify-between items-center">
+          <div className="relative max-w-32">
+            <Image
+              alt="Les cookies du patron"
+              width={2048}
+              height={2048}
+              src={"/logoLCDPblack.png"}
+            />
+          </div>
+          <MenuList className="flex grow justify-around text-2xl" />
+          <div className="flex items-center gap-6">
+            <Button className="px-8 py-2">Connexion</Button>
+            <Button intent="hollow" className="p-0">
+              <ShoppingCart className="stroke-charcoal" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile version */}
+        <div className="md:hidden">
+          <button onClick={handleMenu} className="p-0">
+            {!isOpen ? (
+              <Menu className="stroke-dahlia" size="24px" />
+            ) : (
+              <X className="stroke-dahlia" size="24px" />
+            )}
+          </button>
+        </div>
+      </nav>
+      {isOpen ? <MenuListMobileContainer handleMenu={handleMenu} /> : null}
+    </>
+  )
+}
+
+function MenuList({
+  handleMenu,
+  className,
+}: {
+  handleMenu?: () => void
+  className?: string
+}) {
   const pathname = usePathname()
   const links: Record<"name" | "href", string>[] = [
     { name: "Accueil", href: "/" },
@@ -19,7 +70,7 @@ function MenuList({ className }: { className?: string }) {
   return (
     <menu className={cn(className)}>
       {links.map((link) => (
-        <li key={`${link.href}-${link.name}`}>
+        <li key={`${link.href}-${link.name}`} onClick={handleMenu}>
           <Link
             className={cn(
               "hover:text-dahlia/80 tracking-wider transition-colors",
@@ -35,18 +86,20 @@ function MenuList({ className }: { className?: string }) {
   )
 }
 
-export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const handleMenu = () => {
-    setIsOpen((previousState) => !previousState)
-  }
-
+function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
   return (
-    <nav>
-      {/* Desktop version */}
-      <div className="max-sm:hidden flex justify-between items-center">
-        <div className="relative max-w-32">
+    <div className="bg-charcoal/30 p-4 flex flex-col absolute w-full bottom-0 min-h-2/3">
+      <div className="flex items-center justify-end">
+        <Button intent="hollow" className="p-0" onClick={handleMenu}>
+          <X />
+        </Button>
+      </div>
+      <MenuList
+        handleMenu={handleMenu}
+        className="mt-8 flex flex-col gap-4 text-2xl items-center"
+      />
+      <div className="flex items-center justify-center mt-8">
+        <div className="flex relative max-w-32">
           <Image
             alt="Les cookies du patron"
             width={2048}
@@ -54,25 +107,19 @@ export function Navbar() {
             src={"/logoLCDPblack.png"}
           />
         </div>
-        <MenuList className="flex grow justify-around text-2xl" />
-        <div className="flex items-center gap-6">
-          <Button className="px-8 py-2">Connexion</Button>
-          <Button intent="hollow" className="p-0">
-            <ShoppingCart className="stroke-charcoal" />
-          </Button>
-        </div>
       </div>
-
-      {/* Mobile version */}
-      <div className="md:hidden">
-        <button onClick={handleMenu} className="p-0">
-          {isOpen ? (
-            <Menu className="stroke-dahlia" size="24px" />
-          ) : (
-            <X className="stroke-dahlia" size="24px" />
-          )}
-        </button>
+      <div className="mt-8 flex flex-col">
+        <Button>Connexion</Button>
+        <Button
+          intent="hollow"
+          className="text-charcoal flex items-center gap-4 justify-center"
+        >
+          <span>
+            <ShoppingCart />
+          </span>{" "}
+          Aller au panier
+        </Button>
       </div>
-    </nav>
+    </div>
   )
 }
