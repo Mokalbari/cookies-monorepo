@@ -2,6 +2,7 @@
 
 import { cn } from "@/utils/utils"
 import { Menu, ShoppingCart, X } from "lucide-react"
+import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -48,7 +49,9 @@ export function Navbar() {
           </button>
         </div>
       </nav>
-      {isOpen ? <MenuListMobileContainer handleMenu={handleMenu} /> : null}
+      <AnimatePresence>
+        {isOpen ? <MenuListMobileContainer handleMenu={handleMenu} /> : null}
+      </AnimatePresence>
     </>
   )
 }
@@ -88,7 +91,12 @@ function MenuList({
 
 function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
   return (
-    <div className="bg-charcoal/30 p-4 flex flex-col absolute w-full bottom-0 min-h-2/3">
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 100, transition: { duration: 0.25 } }}
+      exit={{ x: 200, opacity: 0, transition: { duration: 0.25 } }}
+      className="bg-charcoal/30 p-4 flex flex-col absolute w-full bottom-0 min-h-2/3 z-10"
+    >
       <div className="flex items-center justify-end">
         <Button intent="hollow" className="p-0" onClick={handleMenu}>
           <X />
@@ -120,6 +128,6 @@ function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
           Aller au panier
         </Button>
       </div>
-    </div>
+    </motion.div>
   )
 }
