@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div>Welcome to cookie master</div>
+  return <div className="">Welcome to cookie master</div>
 }
