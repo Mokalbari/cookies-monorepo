@@ -23,11 +23,11 @@ export interface IQuery {
     cookie(id: number): Nullable<Cookies> | Promise<Nullable<Cookies>>;
     cookies(): Cookies[] | Promise<Cookies[]>;
     showcasedCookies(): Cookies[] | Promise<Cookies[]>;
-    user(id: number): Nullable<User> | Promise<Nullable<User>>;
-    users(): User[] | Promise<User[]>;
+    user(id: number): Nullable<Users> | Promise<Nullable<Users>>;
+    users(): Users[] | Promise<Users[]>;
 }
 
-export interface User {
+export interface Users {
     address?: Nullable<string>;
     age: number;
     country?: Nullable<string>;

@@ -1,16 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from 'src/app.module';
-import { User } from 'src/user/user.entity';
-import { UserService } from 'src/user/user.service';
+import { Users } from 'src/users/users.entity';
+import { UsersService } from 'src/users/users.service';
 
 async function bootstrap() {
   try {
     const app = await NestFactory.createApplicationContext(AppModule);
-    const userService = app.get(UserService);
+    const usersService = app.get(UsersService);
 
     console.log('...🌱 Seeding database.');
 
-    const users = await userService.getUsers();
+    const users = await usersService.getUsers();
 
     if (users.length > 0) {
       console.log('⚠️ Database already seeded. Exiting...');
@@ -18,7 +18,7 @@ async function bootstrap() {
       return;
     }
 
-    const usersData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>[] = [
+    const usersData: Omit<Users, 'id' | 'createdAt' | 'updatedAt'>[] = [
       {
         firstName: 'Lucas',
         lastName: 'Meyer',
@@ -72,7 +72,7 @@ async function bootstrap() {
     ];
 
     for (const userData of usersData) {
-      await userService._seedUser(userData);
+      await usersService._seedUser(userData);
     }
 
     console.log('✅ Seeding complete!');

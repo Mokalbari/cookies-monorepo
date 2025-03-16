@@ -22,11 +22,11 @@ type Query {
   cookie(id: Float!): Cookies
   cookies: [Cookies!]!
   showcasedCookies: [Cookies!]!
-  user(id: Float!): User
-  users: [User!]!
+  user(id: Float!): Users
+  users: [Users!]!
 }
 
-type User {
+type Users {
   address: String
   age: Float!
   country: String

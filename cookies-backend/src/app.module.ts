@@ -8,7 +8,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CookiesModule } from './cookies/cookies.module';
-import { UserModule } from './user/user.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -34,7 +34,7 @@ import { UserModule } from './user/user.module';
         ? { rejectUnauthorized: false }
         : false,
     }),
-    UserModule,
+    UsersModule,
     CookiesModule,
   ],
   controllers: [AppController],
