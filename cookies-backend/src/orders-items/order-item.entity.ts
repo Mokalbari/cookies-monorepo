@@ -1,10 +1,12 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { IsNumber } from 'class-validator';
 import { Cookies } from 'src/cookies/cookies.entity';
 import { Orders } from 'src/orders/orders.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -18,22 +20,26 @@ export class OrderItem {
   id: string;
 
   @Field()
-  @Column('int')
+  @Column('int', { default: 0, nullable: false })
+  @IsNumber()
   quantity: number;
 
   @Field()
-  @Column('decimal', { scale: 10, precision: 2 })
+  @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  @IsNumber()
   price: number;
 
   @Field(() => Orders)
-  @ManyToOne(() => Orders, (order) => order.orderItem, {
+  @ManyToOne(() => Orders, (order) => order.orderItems, {
     onDelete: 'CASCADE',
     eager: false,
   })
+  @Index()
   order: Orders;
 
   @Field(() => Cookies)
   @ManyToOne(() => Cookies, { onDelete: 'CASCADE' })
+  @Index()
   cookie: Cookies;
 
   @Field(() => Date)

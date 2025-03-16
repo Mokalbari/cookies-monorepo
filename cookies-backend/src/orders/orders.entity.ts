@@ -1,10 +1,12 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { OrderItem } from 'src/orders-items/orders-items.entity';
+import { IsNumber } from 'class-validator';
+import { OrderItem } from 'src/orders-items/order-item.entity';
 import { Users } from 'src/users/users.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -30,10 +32,17 @@ export class Orders {
 
   @Field()
   @Column('decimal', { precision: 10, scale: 2, default: 0 })
+  @IsNumber()
   totalPrice: number;
 
   @Field()
-  @Column({ type: 'enum', enum: Status, default: Status.PENDING })
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.PENDING,
+    nullable: false,
+  })
+  @Index()
   status: Status;
 
   @Field()
@@ -53,5 +62,5 @@ export class Orders {
 
   @Field(() => [OrderItem], { nullable: true })
   @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
-  orderItem?: OrderItem[];
+  orderItems?: OrderItem[];
 }

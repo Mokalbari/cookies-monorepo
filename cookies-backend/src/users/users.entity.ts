@@ -1,5 +1,13 @@
 import { Field, HideField, ObjectType } from '@nestjs/graphql';
-import { IsEmail, IsNotEmpty, Length, Max, Min } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  Length,
+  Max,
+  Min,
+} from 'class-validator';
 import { Orders } from 'src/orders/orders.entity';
 import {
   Column,
@@ -21,29 +29,34 @@ export class Users {
   @Field()
   @Column({ name: 'first_name' })
   @Length(2, 20)
+  @IsString()
   firstName: string;
 
   @Field()
   @Column({ name: 'last_name' })
   @Length(2, 20)
+  @IsString()
   lastName: string;
 
   @Field()
   @Column({ type: 'int' })
   @Min(13)
   @Max(110)
+  @IsNumber()
   age: number;
 
   @Field()
   @Index()
   @Column({ unique: true })
   @IsEmail()
+  @IsString()
   email: string;
 
   @HideField()
   @Column({ nullable: false })
   @IsNotEmpty()
   @Length(8, 30)
+  @IsString()
   password: string;
 
   @Field({ nullable: true })
