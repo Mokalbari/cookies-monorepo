@@ -1,18 +1,26 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { DateTimeResolver } from 'graphql-scalars';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      typePaths: ['/.**/*.graphql'],
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
+      },
+      resolvers: {
+        DateTime: DateTimeResolver,
       },
     }),
     TypeOrmModule.forRoot({
@@ -25,6 +33,7 @@ import { AppService } from './app.service';
         ? { rejectUnauthorized: false }
         : false,
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
