@@ -28,6 +28,7 @@
     "@nestjs/graphql": "^13.0.3",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/typeorm": "^11.0.0",
+    "class-validator": "^0.14.1",
     "graphql": "^16.10.0",
     "graphql-scalars": "^1.24.1",
     "graphql-type-datetime": "^0.2.4",

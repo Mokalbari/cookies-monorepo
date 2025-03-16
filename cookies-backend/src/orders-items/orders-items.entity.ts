@@ -37,10 +37,10 @@ export class OrderItem {
   cookie: Cookies;
 
   @Field(() => Date)
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @Field(() => Date)
-  @UpdateDateColumn()
+  @Field(() => Date, { nullable: true })
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 }
