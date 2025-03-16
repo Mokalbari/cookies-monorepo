@@ -23,11 +23,27 @@ export class User {
   lastName: string;
 
   @Field()
+  @Column()
+  age: number;
+
+  @Field()
   @Column({ unique: true })
   email: string;
 
   @Column()
   password: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  address: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  zipCode: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  country: string;
 
   @Field(() => Date)
   @CreateDateColumn()

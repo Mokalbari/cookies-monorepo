@@ -16,4 +16,14 @@ export class UserService {
   getUser(id: number): Promise<User | null> {
     return this.userRepository.findOneBy({ id });
   }
+
+  createUser(userData: Partial<User>): Promise<User> {
+    const newUser = this.userRepository.create(userData);
+    return this.userRepository.save(newUser);
+  }
+
+  _seedUser(userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) {
+    const newUser = this.userRepository.create(userData);
+    return this.userRepository.save(newUser);
+  }
 }

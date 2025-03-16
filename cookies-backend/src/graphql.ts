@@ -14,12 +14,16 @@ export interface IQuery {
 }
 
 export interface User {
+    address?: Nullable<string>;
+    age: number;
+    country?: Nullable<string>;
     createdAt: DateTime;
     email: string;
     firstName: string;
     id: number;
     lastName: string;
     updatedAt?: Nullable<DateTime>;
+    zipCode?: Nullable<string>;
 }
 
 export type DateTime = any;

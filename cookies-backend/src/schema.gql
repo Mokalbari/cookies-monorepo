@@ -13,10 +13,14 @@ type Query {
 }
 
 type User {
+  address: String
+  age: Float!
+  country: String
   createdAt: DateTime!
   email: String!
   firstName: String!
   id: Float!
   lastName: String!
   updatedAt: DateTime
+  zipCode: String
 }
