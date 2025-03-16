@@ -1,18 +1,20 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Orders } from 'src/orders/orders.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @ObjectType()
-@Entity()
+@Entity('users')
 export class Users {
   @Field()
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Field()
   @Column()
@@ -23,7 +25,7 @@ export class Users {
   lastName: string;
 
   @Field()
-  @Column()
+  @Column({ type: 'int' })
   age: number;
 
   @Field()
@@ -52,4 +54,8 @@ export class Users {
   @Field(() => Date, { nullable: true })
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Field(() => [Orders], { nullable: true })
+  @OneToMany(() => Orders, (order) => order.user)
+  orders?: Orders[];
 }

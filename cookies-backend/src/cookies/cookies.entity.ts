@@ -1,18 +1,20 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { OrderItem } from 'src/orders-items/orders-items.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 @ObjectType()
-@Entity()
+@Entity('cookies')
 export class Cookies {
   @Field()
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Field()
   @Column()
@@ -41,4 +43,8 @@ export class Cookies {
   @Field(() => Date, { nullable: true })
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Field(() => [OrderItem], { nullable: true })
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.cookie)
+  orderItems?: OrderItem;
 }

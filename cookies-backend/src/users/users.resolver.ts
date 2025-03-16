@@ -12,7 +12,7 @@ export class UsersResolver {
   }
 
   @Query(() => Users, { nullable: true })
-  user(@Args('id') id: number): Promise<Users | null> {
+  user(@Args('id') id: string): Promise<Users | null> {
     return this.usersService.getUser(id);
   }
 }
