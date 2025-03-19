@@ -8,58 +8,46 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export interface Cookies {
-    createdAt: DateTime;
+export interface CookieCreateInput {
     description: string;
-    id: string;
-    imageUrl?: Nullable<string>;
+    imageUrl: string;
     isShowcased: boolean;
     name: string;
-    orderItems?: Nullable<OrderItem[]>;
     price: number;
+    stock: number;
+}
+
+export interface CookieUpdateInput {
+    description?: Nullable<string>;
+    imageUrl?: Nullable<string>;
+    isShowcased?: Nullable<boolean>;
+    name?: Nullable<string>;
+    price?: Nullable<number>;
+    stock?: Nullable<number>;
+}
+
+export interface Cookies {
+    createdAt: DateTime;
+    deletedAt?: Nullable<DateTime>;
+    description: string;
+    id: string;
+    imageUrl: string;
+    isShowcased: boolean;
+    name: string;
+    price: number;
+    stock: number;
     updatedAt?: Nullable<DateTime>;
 }
 
-export interface OrderItem {
-    cookie: Cookies;
-    createdAt: DateTime;
-    id: string;
-    order: Orders;
-    price: number;
-    quantity: number;
-    updatedAt?: Nullable<DateTime>;
-}
-
-export interface Orders {
-    createdAt: DateTime;
-    id: string;
-    orderItems?: Nullable<OrderItem[]>;
-    status: string;
-    totalPrice: number;
-    updatedAt: DateTime;
-    user: Users;
+export interface IMutation {
+    createCookies(input: CookieCreateInput): Cookies | Promise<Cookies>;
+    removeCookies(id: string): boolean | Promise<boolean>;
+    updateCookies(id: string, input: CookieUpdateInput): Cookies | Promise<Cookies>;
 }
 
 export interface IQuery {
-    cookie(id: string): Nullable<Cookies> | Promise<Nullable<Cookies>>;
-    cookies(): Cookies[] | Promise<Cookies[]>;
-    showcasedCookies(): Cookies[] | Promise<Cookies[]>;
-    user(id: string): Nullable<Users> | Promise<Nullable<Users>>;
-    users(): Users[] | Promise<Users[]>;
-}
-
-export interface Users {
-    address?: Nullable<string>;
-    age: number;
-    country?: Nullable<string>;
-    createdAt: DateTime;
-    email: string;
-    firstName: string;
-    id: string;
-    lastName: string;
-    orders?: Nullable<Orders[]>;
-    updatedAt?: Nullable<DateTime>;
-    zipCode?: Nullable<string>;
+    findAllCookies(): Cookies[] | Promise<Cookies[]>;
+    findOneCookies(id: string): Cookies | Promise<Cookies>;
 }
 
 export type DateTime = any;

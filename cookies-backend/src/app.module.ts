@@ -8,7 +8,6 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CookiesModule } from './modules/cookies/cookies.module';
-import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -34,7 +33,6 @@ import { UsersModule } from './modules/users/users.module';
         ? { rejectUnauthorized: false }
         : false,
     }),
-    UsersModule,
     CookiesModule,
   ],
   controllers: [AppController],
