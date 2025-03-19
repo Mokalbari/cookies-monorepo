@@ -17,8 +17,8 @@ export function createBaseResolver<
     constructor(public readonly service: AbstractService<T>) {}
 
     @Query(() => [classRef], { name: `findAll${classRef.name}s` })
-    async findAll(): Promise<T[]> {
-      return this.service.findAll();
+    async findAll(skip: number, take: number): Promise<T[]> {
+      return this.service.findAll(skip, take);
     }
 
     @Query(() => classRef, { name: `findOne${classRef.name}` })
