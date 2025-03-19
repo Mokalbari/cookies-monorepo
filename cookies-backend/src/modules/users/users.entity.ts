@@ -8,7 +8,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { CoreEntity } from 'src/common/entities/core-entity';
+import { CoreEntity } from 'src/common/entities/core.entity';
 import { Favorites } from 'src/modules/favorites/favorites.entity';
 import { Orders } from 'src/modules/orders/orders.entity';
 import { Column, Entity, Index, OneToMany, UpdateDateColumn } from 'typeorm';

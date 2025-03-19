@@ -1,13 +1,8 @@
 import { ArgsType, Field } from '@nestjs/graphql';
+import { PaginatedEntity } from 'src/common/entities/paginated.entity';
 
 @ArgsType()
-export class GetFavoritesArgs {
+export class GetFavoritesArgs extends PaginatedEntity {
   @Field()
   userId: string;
-
-  @Field({ nullable: true, defaultValue: 0 })
-  skip: number;
-
-  @Field({ nullable: true, defaultValue: 0 })
-  take: number;
 }

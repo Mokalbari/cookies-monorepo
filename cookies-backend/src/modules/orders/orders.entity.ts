@@ -1,6 +1,6 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { IsNumber } from 'class-validator';
-import { CoreEntity } from 'src/common/entities/core-entity';
+import { CoreEntity } from 'src/common/entities/core.entity';
 import { OrderItem } from 'src/modules/orders-items/order-item.entity';
 import { Users } from 'src/modules/users/users.entity';
 import {

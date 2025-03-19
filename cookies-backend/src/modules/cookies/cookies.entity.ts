@@ -7,7 +7,7 @@ import {
   IsUrl,
   Length,
 } from 'class-validator';
-import { CoreEntity } from 'src/common/entities/core-entity';
+import { CoreEntity } from 'src/common/entities/core.entity';
 import { Favorites } from 'src/modules/favorites/favorites.entity';
 import { OrderItem } from 'src/modules/orders-items/order-item.entity';
 import { Column, Entity, Index, OneToMany, UpdateDateColumn } from 'typeorm';

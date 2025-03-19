@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IsNumber } from 'class-validator';
-import { CoreEntity } from 'src/common/entities/core-entity';
+import { CoreEntity } from 'src/common/entities/core.entity';
 import { Cookies } from 'src/modules/cookies/cookies.entity';
 import { Orders } from 'src/modules/orders/orders.entity';
 import { Column, Entity, Index, ManyToOne, UpdateDateColumn } from 'typeorm';
