@@ -8,25 +8,14 @@ import {
   Max,
   Min,
 } from 'class-validator';
-import { Favorites } from 'src/favorites/favorites.entity';
-import { Orders } from 'src/orders/orders.entity';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { CoreEntity } from 'src/common/entities/core-entity';
+import { Favorites } from 'src/modules/favorites/favorites.entity';
+import { Orders } from 'src/modules/orders/orders.entity';
+import { Column, Entity, Index, OneToMany, UpdateDateColumn } from 'typeorm';
 
 @ObjectType()
 @Entity('users')
-export class Users {
-  @Field()
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class Users extends CoreEntity {
   @Field()
   @Column({ name: 'first_name' })
   @Length(2, 20)
@@ -71,10 +60,6 @@ export class Users {
   @Field({ nullable: true })
   @Column({ nullable: true, default: '' })
   country: string;
-
-  @Field(() => Date)
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
 
   @Field(() => Date, { nullable: true })
   @UpdateDateColumn({ name: 'updated_at' })

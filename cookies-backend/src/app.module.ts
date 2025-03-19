@@ -7,8 +7,8 @@ import { DateTimeResolver } from 'graphql-scalars';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CookiesModule } from './cookies/cookies.module';
-import { UsersModule } from './users/users.module';
+import { CookiesModule } from './modules/cookies/cookies.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [

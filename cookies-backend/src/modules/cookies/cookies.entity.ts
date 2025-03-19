@@ -7,25 +7,14 @@ import {
   IsUrl,
   Length,
 } from 'class-validator';
-import { Favorites } from 'src/favorites/favorites.entity';
-import { OrderItem } from 'src/orders-items/order-item.entity';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { CoreEntity } from 'src/common/entities/core-entity';
+import { Favorites } from 'src/modules/favorites/favorites.entity';
+import { OrderItem } from 'src/modules/orders-items/order-item.entity';
+import { Column, Entity, Index, OneToMany, UpdateDateColumn } from 'typeorm';
 
 @ObjectType()
 @Entity('cookies')
-export class Cookies {
-  @Field()
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class Cookies extends CoreEntity {
   @Field()
   @Column({ nullable: false })
   @Length(2, 16)
@@ -54,10 +43,6 @@ export class Cookies {
   @Column({ name: 'image_url', nullable: true, default: '' })
   @IsUrl()
   imageUrl: string;
-
-  @Field(() => Date)
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
 
   @Field(() => Date, { nullable: true })
   @UpdateDateColumn({ name: 'updated_at' })

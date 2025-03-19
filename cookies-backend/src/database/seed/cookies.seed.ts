@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from 'src/app.module';
-import { Cookies } from 'src/cookies/cookies.entity';
-import { CookiesService } from 'src/cookies/cookies.service';
+import { Cookies } from 'src/modules/cookies/cookies.entity';
+import { CookiesService } from 'src/modules/cookies/cookies.service';
 
 async function bootstrap() {
   try {

@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from 'src/app.module';
-import { Users } from 'src/users/users.entity';
-import { UsersService } from 'src/users/users.service';
+import { Users } from 'src/modules/users/users.entity';
+import { UsersService } from 'src/modules/users/users.service';
 
 async function bootstrap() {
   try {

@@ -1,15 +1,14 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { IsNumber } from 'class-validator';
-import { OrderItem } from 'src/orders-items/order-item.entity';
-import { Users } from 'src/users/users.entity';
+import { CoreEntity } from 'src/common/entities/core-entity';
+import { OrderItem } from 'src/modules/orders-items/order-item.entity';
+import { Users } from 'src/modules/users/users.entity';
 import {
   Column,
-  CreateDateColumn,
   Entity,
   Index,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -25,11 +24,7 @@ registerEnumType(Status, {
 
 @ObjectType()
 @Entity('orders')
-export class Orders {
-  @Field()
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class Orders extends CoreEntity {
   @Field()
   @Column('decimal', { precision: 10, scale: 2, default: 0 })
   @IsNumber()
@@ -44,10 +39,6 @@ export class Orders {
   })
   @Index()
   status: Status;
-
-  @Field()
-  @CreateDateColumn()
-  createdAt: Date;
 
   @Field()
   @UpdateDateColumn()

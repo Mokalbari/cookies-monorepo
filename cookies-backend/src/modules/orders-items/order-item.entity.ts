@@ -1,24 +1,13 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IsNumber } from 'class-validator';
-import { Cookies } from 'src/cookies/cookies.entity';
-import { Orders } from 'src/orders/orders.entity';
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { CoreEntity } from 'src/common/entities/core-entity';
+import { Cookies } from 'src/modules/cookies/cookies.entity';
+import { Orders } from 'src/modules/orders/orders.entity';
+import { Column, Entity, Index, ManyToOne, UpdateDateColumn } from 'typeorm';
 
 @ObjectType()
-@Entity('order_items') // clearer for db convention
-export class OrderItem {
-  @Field()
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+@Entity('order_items')
+export class OrderItem extends CoreEntity {
   @Field()
   @Column('int', { default: 0, nullable: false })
   @IsNumber()
@@ -41,10 +30,6 @@ export class OrderItem {
   @ManyToOne(() => Cookies, { onDelete: 'CASCADE' })
   @Index()
   cookie: Cookies;
-
-  @Field(() => Date)
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
 
   @Field(() => Date, { nullable: true })
   @UpdateDateColumn({ name: 'updated_at' })
