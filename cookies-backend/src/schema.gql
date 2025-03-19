@@ -5,10 +5,11 @@
 type Cookies {
   createdAt: DateTime!
   description: String!
-  id: Float!
+  id: String!
   imageUrl: String
-  isShowcased: Boolean
+  isShowcased: Boolean!
   name: String!
+  orderItems: [OrderItem!]
   price: Float!
   updatedAt: DateTime
 }
@@ -18,11 +19,31 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type OrderItem {
+  cookie: Cookies!
+  createdAt: DateTime!
+  id: String!
+  order: Orders!
+  price: Float!
+  quantity: Float!
+  updatedAt: DateTime
+}
+
+type Orders {
+  createdAt: DateTime!
+  id: String!
+  orderItems: [OrderItem!]
+  status: String!
+  totalPrice: Float!
+  updatedAt: DateTime!
+  user: Users!
+}
+
 type Query {
-  cookie(id: Float!): Cookies
+  cookie(id: String!): Cookies
   cookies: [Cookies!]!
   showcasedCookies: [Cookies!]!
-  user(id: Float!): Users
+  user(id: String!): Users
   users: [Users!]!
 }
 
@@ -33,8 +54,9 @@ type Users {
   createdAt: DateTime!
   email: String!
   firstName: String!
-  id: Float!
+  id: String!
   lastName: String!
+  orders: [Orders!]
   updatedAt: DateTime
   zipCode: String
 }

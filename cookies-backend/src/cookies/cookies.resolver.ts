@@ -12,7 +12,7 @@ export class CookiesResolver {
   }
 
   @Query(() => Cookies, { nullable: true })
-  cookie(@Args('id') id: number): Promise<Cookies | null> {
+  cookie(@Args('id') id: string): Promise<Cookies | null> {
     return this.cookiesService.getCookie(id);
   }
 

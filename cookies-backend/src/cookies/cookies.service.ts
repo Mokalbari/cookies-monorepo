@@ -14,7 +14,7 @@ export class CookiesService {
     return this.cookiesRepository.find();
   }
 
-  getCookie(id: number): Promise<Cookies | null> {
+  getCookie(id: string): Promise<Cookies | null> {
     return this.cookiesRepository.findOneBy({ id });
   }
 
