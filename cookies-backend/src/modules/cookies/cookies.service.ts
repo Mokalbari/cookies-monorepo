@@ -10,15 +10,15 @@ export class CookiesService {
     private readonly cookiesRepository: Repository<Cookies>,
   ) {}
 
-  getCookies(): Promise<Cookies[]> {
+  async getCookies(): Promise<Cookies[]> {
     return this.cookiesRepository.find();
   }
 
-  getCookie(id: string): Promise<Cookies | null> {
+  async getCookie(id: string): Promise<Cookies | null> {
     return this.cookiesRepository.findOneBy({ id });
   }
 
-  getShowcasedCookies(): Promise<Cookies[]> {
+  async getShowcasedCookies(): Promise<Cookies[]> {
     return this.cookiesRepository.find({
       select: {
         isShowcased: true,
@@ -26,7 +26,9 @@ export class CookiesService {
     });
   }
 
-  _seedCookie(cookieData: Omit<Cookies, 'id' | 'createdAt' | 'updatedAt'>) {
+  async _seedCookie(
+    cookieData: Omit<Cookies, 'id' | 'createdAt' | 'updatedAt'>,
+  ) {
     const newCookie = this.cookiesRepository.create(cookieData);
     return this.cookiesRepository.save(newCookie);
   }
