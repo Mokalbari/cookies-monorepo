@@ -6,5 +6,5 @@ export class PaginatedEntity {
   skip: number;
 
   @Field({ nullable: true, defaultValue: 0 })
-  limit: number;
+  take: number;
 }
