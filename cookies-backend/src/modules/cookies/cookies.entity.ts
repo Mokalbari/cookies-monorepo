@@ -14,7 +14,7 @@ import { Column, Entity } from 'typeorm';
 
 @ObjectType()
 @Entity('cookies')
-export class CookiesEntity extends TimestampsEntity {
+export class Cookies extends TimestampsEntity {
   @Field(() => String)
   @Column()
   name: string;
@@ -38,7 +38,7 @@ export class CookiesEntity extends TimestampsEntity {
   description: string;
 
   @Field(() => Boolean)
-  @Column({ default: false })
+  @Column({ name: 'is_showcased', default: false })
   @IsBoolean()
   isShowcased: boolean;
 
