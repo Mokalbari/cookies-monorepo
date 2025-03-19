@@ -1,4 +1,5 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { IsOptional } from 'class-validator';
 import {
   CreateDateColumn,
   DeleteDateColumn,
@@ -8,9 +9,9 @@ import {
 
 @ObjectType({ isAbstract: true })
 export abstract class CoreEntity {
-  @Field(() => Int)
+  @Field(() => String)
   @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  id: string;
 
   @Field(() => Date)
   @CreateDateColumn({ name: 'created_at' })
@@ -25,5 +26,6 @@ export abstract class TimestampsEntity extends CoreEntity {
 
   @Field(() => Date, { nullable: true })
   @DeleteDateColumn({ name: 'deleted_at' })
+  @IsOptional()
   deletedAt: Date;
 }
