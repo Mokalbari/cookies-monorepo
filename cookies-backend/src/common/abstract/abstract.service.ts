@@ -1,4 +1,3 @@
-import { UserInputError } from '@nestjs/apollo';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { DeepPartial, FindOptionsWhere, Repository } from 'typeorm';
 import { validatePagination } from '../utils/validatePagination';
@@ -8,10 +7,6 @@ export abstract class AbstractService<T extends { id: string | number }> {
   protected constructor(private readonly repository: Repository<T>) {}
 
   async findAll(skip: number, take: number): Promise<T[]> {
-    if (!!skip || !!take) {
-      throw new UserInputError('Pagination must be provided');
-    }
-
     validatePagination(skip, take);
 
     return this.repository.find({ skip, take });
