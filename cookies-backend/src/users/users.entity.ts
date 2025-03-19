@@ -8,6 +8,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
+import { Favorites } from 'src/favorites/favorites.entity';
 import { Orders } from 'src/orders/orders.entity';
 import {
   Column,
@@ -82,4 +83,8 @@ export class Users {
   @Field(() => [Orders], { nullable: true })
   @OneToMany(() => Orders, (order) => order.user)
   orders?: Orders[];
+
+  @Field(() => [Favorites], { nullable: true })
+  @OneToMany(() => Favorites, (favorite) => favorite.user)
+  favoritedCookie: Favorites[];
 }

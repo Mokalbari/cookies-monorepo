@@ -7,6 +7,7 @@ import {
   IsUrl,
   Length,
 } from 'class-validator';
+import { Favorites } from 'src/favorites/favorites.entity';
 import { OrderItem } from 'src/orders-items/order-item.entity';
 import {
   Column,
@@ -45,24 +46,28 @@ export class Cookies {
   price: number;
 
   @Field({ nullable: false })
-  @Column({ nullable: false, default: false })
+  @Column({ name: 'is_showcased', nullable: false, default: false })
   @IsBoolean()
   isShowcased: boolean;
 
   @Field({ nullable: true })
-  @Column({ nullable: true, default: '' })
+  @Column({ name: 'image_url', nullable: true, default: '' })
   @IsUrl()
   imageUrl: string;
 
   @Field(() => Date)
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
   @Field(() => Date, { nullable: true })
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
   @Field(() => [OrderItem], { nullable: true })
   @OneToMany(() => OrderItem, (orderItem) => orderItem.cookie)
   orderItems?: OrderItem[];
+
+  @Field(() => [Favorites], { nullable: true })
+  @OneToMany(() => Favorites, (favorite) => favorite.cookie)
+  usersFavorited: Favorites[];
 }
