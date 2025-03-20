@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { TimestampsEntity } from 'src/common/abstract/abstract.entity';
-import { Column, Entity, ManyToMany } from 'typeorm';
+import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
+import { OrderItems } from '../order-items/order-items.entity';
 import { Users } from '../users/users.entity';
 
 @ObjectType()
@@ -18,7 +19,8 @@ export class Cookies extends TimestampsEntity {
   @Column({ type: 'numeric', precision: 10, scale: 2 })
   price: number;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
+  @Column({ nullable: true })
   description: string;
 
   @Field(() => Boolean)
@@ -31,4 +33,7 @@ export class Cookies extends TimestampsEntity {
 
   @ManyToMany(() => Users, (user) => user.cookies)
   users: Users[];
+
+  @OneToMany(() => OrderItems, (item) => item.cookie)
+  orderItems: OrderItems[];
 }

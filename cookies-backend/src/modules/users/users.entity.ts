@@ -1,7 +1,16 @@
 import { Field, HideField, Int, ObjectType } from '@nestjs/graphql';
 import { TimestampsEntity } from 'src/common/abstract/abstract.entity';
-import { Column, Entity, JoinTable, ManyToMany, Unique } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  Unique,
+} from 'typeorm';
 import { Cookies } from '../cookies/cookies.entity';
+import { Orders } from '../orders/orders.entity';
 
 @ObjectType()
 @Entity('users')
@@ -20,6 +29,7 @@ export class Users extends TimestampsEntity {
 
   @Field(() => String)
   @Unique(['email'])
+  @Index()
   @Column()
   email: string;
 
@@ -36,10 +46,13 @@ export class Users extends TimestampsEntity {
   zipCode: string;
 
   @HideField()
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @ManyToMany(() => Cookies)
   @JoinTable({ name: 'favorite_cookies' })
   cookies: Cookies[];
+
+  @OneToMany(() => Orders, (order) => order.user)
+  orders: Orders[];
 }
