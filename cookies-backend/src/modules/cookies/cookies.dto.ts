@@ -1,4 +1,4 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
+import { Field, InputType, Int, PartialType } from '@nestjs/graphql';
 import {
   IsBoolean,
   IsInt,
@@ -10,8 +10,8 @@ import {
   Min,
 } from 'class-validator';
 
-@InputType()
-export class CookieCreateInput {
+@InputType({ isAbstract: true })
+export abstract class CookieDTO {
   @Field(() => String)
   @IsString()
   @Length(3, 50)
@@ -44,34 +44,7 @@ export class CookieCreateInput {
 }
 
 @InputType()
-export class CookieUpdateInput {
-  @Field(() => String, { nullable: true })
-  @IsString()
-  @Length(3, 50)
-  name?: string;
+export class CookieCreateInput extends CookieDTO {}
 
-  @Field(() => String, { nullable: true })
-  @IsUrl()
-  imageUrl?: string;
-
-  @Field(() => Number, { nullable: true })
-  @IsNumber({ maxDecimalPlaces: 2 })
-  @Min(1)
-  @Max(100)
-  price?: number;
-
-  @Field(() => String, { nullable: true })
-  @IsString()
-  @Length(3, 100)
-  description?: string;
-
-  @Field(() => Boolean, { nullable: true })
-  @IsBoolean()
-  isShowcased?: boolean;
-
-  @Field(() => Int, { nullable: true })
-  @IsInt()
-  @Min(0)
-  @Max(1000)
-  stock?: number;
-}
+@InputType()
+export class CookieUpdateInput extends PartialType(CookieCreateInput) {}
