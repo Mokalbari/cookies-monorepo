@@ -2,6 +2,10 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { DeepPartial, FindOptionsWhere, Repository } from 'typeorm';
 import { validatePagination } from '../utils/validatePagination';
 
+/**
+ * @description The abstract service class
+ * @param T - The entity type
+ */
 @Injectable()
 export abstract class AbstractService<T extends { id: string | number }> {
   protected constructor(private readonly repository: Repository<T>) {}

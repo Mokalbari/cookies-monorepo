@@ -7,6 +7,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+/**
+ * @description The core entity class
+ */
 @ObjectType({ isAbstract: true })
 export abstract class CoreEntity {
   @Field(() => String)
@@ -18,6 +21,10 @@ export abstract class CoreEntity {
   createdAt: Date;
 }
 
+/**
+ * @description The timestamps entity class
+ * @extends CoreEntity
+ */
 @ObjectType({ isAbstract: true })
 export abstract class TimestampsEntity extends CoreEntity {
   @Field(() => Date, { nullable: true })

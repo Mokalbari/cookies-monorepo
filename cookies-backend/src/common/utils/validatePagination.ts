@@ -1,5 +1,10 @@
 import { UserInputError } from '@nestjs/apollo';
 
+/**
+ * @description Validates the pagination parameters
+ * @param skip - The skip (how many items to skip) parameter
+ * @param take - The take (how many items to take) parameter
+ */
 export function validatePagination(skip: number, take: number) {
   if (skip == null || take == null) {
     throw new UserInputError('Pagination must be provided');
