@@ -10,7 +10,9 @@ export enum OrderStatus {
   COMPLETED = 'COMPLETED',
 }
 
-registerEnumType(OrderStatus);
+registerEnumType(OrderStatus, {
+  name: 'OrderStatus',
+});
 
 @ObjectType()
 @Entity('orders')

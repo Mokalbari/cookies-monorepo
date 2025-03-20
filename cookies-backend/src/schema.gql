@@ -23,7 +23,7 @@ input CookieUpdateInput {
 type Cookies {
   createdAt: DateTime!
   deletedAt: DateTime
-  description: String!
+  description: String
   id: String!
   imageUrl: String!
   isShowcased: Boolean!
@@ -40,17 +40,74 @@ scalar DateTime
 
 type Mutation {
   createCookies(input: CookieCreateInput!): Cookies!
+  createOrderItems(input: OrderItemCreateInput!): OrderItems!
+  createOrders(input: OrderCreateInput!): Orders!
   createUsers(input: UserCreateInput!): Users!
   removeCookies(id: ID!): Boolean!
+  removeOrderItems(id: ID!): Boolean!
+  removeOrders(id: ID!): Boolean!
   removeUsers(id: ID!): Boolean!
   updateCookies(id: ID!, input: CookieUpdateInput!): Cookies!
+  updateOrderItems(id: ID!, input: OrderItemUpdateInput!): OrderItems!
+  updateOrders(id: ID!, input: OrderUpdateInput!): Orders!
   updateUsers(id: ID!, input: UserUpdateInput!): Users!
+}
+
+input OrderCreateInput {
+  items: [OrderItemCreateInput!]! = []
+  orderStatus: OrderStatus! = PENDING
+  total: Float!
+  userId: String!
+}
+
+input OrderItemCreateInput {
+  cookieId: String!
+  quantity: Float!
+}
+
+input OrderItemUpdateInput {
+  quantity: Float!
+}
+
+type OrderItems {
+  cookie: Cookies!
+  createdAt: DateTime!
+  id: String!
+  order: Orders!
+  quantity: Float!
+}
+
+enum OrderStatus {
+  CANCELLED
+  COMPLETED
+  PENDING
+}
+
+input OrderUpdateInput {
+  items: [OrderItemCreateInput!]!
+  orderStatus: OrderStatus! = PENDING
+  total: Float!
+}
+
+type Orders {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  id: String!
+  items: [OrderItems!]!
+  orderStatus: OrderStatus!
+  total: Float!
+  updatedAt: DateTime
+  user: Users!
 }
 
 type Query {
   findAllCookies: [Cookies!]!
+  findAllOrderItems: [OrderItems!]!
+  findAllOrders: [Orders!]!
   findAllUsers: [Users!]!
   findOneInCookies(id: ID!): Cookies!
+  findOneInOrderItems(id: ID!): OrderItems!
+  findOneInOrders(id: ID!): Orders!
   findOneInUsers(id: ID!): Users!
 }
 
