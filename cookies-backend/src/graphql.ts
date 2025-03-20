@@ -73,8 +73,8 @@ export interface IMutation {
 export interface IQuery {
     findAllCookies(): Cookies[] | Promise<Cookies[]>;
     findAllUsers(): Users[] | Promise<Users[]>;
-    findOneCookies(id: string): Cookies | Promise<Cookies>;
-    findOneUsers(id: string): Users | Promise<Users>;
+    findOneInCookies(id: string): Cookies | Promise<Cookies>;
+    findOneInUsers(id: string): Users | Promise<Users>;
 }
 
 export interface Users {

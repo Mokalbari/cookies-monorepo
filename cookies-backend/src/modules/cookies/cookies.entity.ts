@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { TimestampsEntity } from 'src/common/abstract/abstract.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToMany } from 'typeorm';
+import { Users } from '../users/users.entity';
 
 @ObjectType()
 @Entity('cookies')
@@ -27,4 +28,7 @@ export class Cookies extends TimestampsEntity {
   @Field(() => Int)
   @Column({ type: 'int', default: 0 })
   stock: number;
+
+  @ManyToMany(() => Users, (user) => user.cookies)
+  users: Users[];
 }

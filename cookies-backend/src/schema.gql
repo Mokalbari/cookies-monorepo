@@ -50,8 +50,8 @@ type Mutation {
 type Query {
   findAllCookies: [Cookies!]!
   findAllUsers: [Users!]!
-  findOneCookies(id: ID!): Cookies!
-  findOneUsers(id: ID!): Users!
+  findOneInCookies(id: ID!): Cookies!
+  findOneInUsers(id: ID!): Users!
 }
 
 input UserCreateInput {

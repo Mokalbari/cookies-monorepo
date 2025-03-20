@@ -28,7 +28,7 @@ export function createBaseResolver<
       return this.service.findAll(skip, take);
     }
 
-    @Query(() => classRef, { name: `findOne${classRef.name}` })
+    @Query(() => classRef, { name: `findOneIn${classRef.name}` })
     async findOne(@Args('id', { type: () => ID }) id: string): Promise<T> {
       return this.service.findOne(id);
     }

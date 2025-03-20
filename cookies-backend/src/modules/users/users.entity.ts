@@ -1,6 +1,7 @@
 import { Field, HideField, Int, ObjectType } from '@nestjs/graphql';
 import { TimestampsEntity } from 'src/common/abstract/abstract.entity';
-import { Column, Entity, Unique } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, Unique } from 'typeorm';
+import { Cookies } from '../cookies/cookies.entity';
 
 @ObjectType()
 @Entity('users')
@@ -37,4 +38,8 @@ export class Users extends TimestampsEntity {
   @HideField()
   @Column()
   password: string;
+
+  @ManyToMany(() => Cookies)
+  @JoinTable({ name: 'favorite_cookies' })
+  cookies: Cookies[];
 }
