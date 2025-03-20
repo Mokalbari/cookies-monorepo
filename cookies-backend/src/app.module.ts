@@ -8,6 +8,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CookiesModule } from './modules/cookies/cookies.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { CookiesModule } from './modules/cookies/cookies.module';
         : false,
     }),
     CookiesModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

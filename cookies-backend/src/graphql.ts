@@ -26,6 +26,28 @@ export interface CookieUpdateInput {
     stock?: Nullable<number>;
 }
 
+export interface UserCreateInput {
+    address?: Nullable<string>;
+    age: number;
+    country: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+    zipCode?: Nullable<string>;
+}
+
+export interface UserUpdateInput {
+    address?: Nullable<string>;
+    age?: Nullable<number>;
+    country?: Nullable<string>;
+    email?: Nullable<string>;
+    firstName?: Nullable<string>;
+    lastName?: Nullable<string>;
+    password?: Nullable<string>;
+    zipCode?: Nullable<string>;
+}
+
 export interface Cookies {
     createdAt: DateTime;
     deletedAt?: Nullable<DateTime>;
@@ -41,13 +63,32 @@ export interface Cookies {
 
 export interface IMutation {
     createCookies(input: CookieCreateInput): Cookies | Promise<Cookies>;
+    createUsers(input: UserCreateInput): Users | Promise<Users>;
     removeCookies(id: string): boolean | Promise<boolean>;
+    removeUsers(id: string): boolean | Promise<boolean>;
     updateCookies(id: string, input: CookieUpdateInput): Cookies | Promise<Cookies>;
+    updateUsers(id: string, input: UserUpdateInput): Users | Promise<Users>;
 }
 
 export interface IQuery {
     findAllCookies(): Cookies[] | Promise<Cookies[]>;
+    findAllUsers(): Users[] | Promise<Users[]>;
     findOneCookies(id: string): Cookies | Promise<Cookies>;
+    findOneUsers(id: string): Users | Promise<Users>;
+}
+
+export interface Users {
+    address?: Nullable<string>;
+    age: number;
+    country: string;
+    createdAt: DateTime;
+    deletedAt?: Nullable<DateTime>;
+    email: string;
+    firstName: string;
+    id: string;
+    lastName: string;
+    updatedAt?: Nullable<DateTime>;
+    zipCode?: Nullable<string>;
 }
 
 export type DateTime = any;

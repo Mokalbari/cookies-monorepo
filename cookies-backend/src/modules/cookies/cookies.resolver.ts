@@ -10,7 +10,7 @@ export class CookiesResolver extends createBaseResolver(
   CookieCreateInput,
   CookieUpdateInput,
 ) {
-  constructor(private cookiesService: CookiesService) {
+  constructor(private readonly cookiesService: CookiesService) {
     super(cookiesService);
   }
 }

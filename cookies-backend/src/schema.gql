@@ -40,11 +40,52 @@ scalar DateTime
 
 type Mutation {
   createCookies(input: CookieCreateInput!): Cookies!
+  createUsers(input: UserCreateInput!): Users!
   removeCookies(id: ID!): Boolean!
+  removeUsers(id: ID!): Boolean!
   updateCookies(id: ID!, input: CookieUpdateInput!): Cookies!
+  updateUsers(id: ID!, input: UserUpdateInput!): Users!
 }
 
 type Query {
   findAllCookies: [Cookies!]!
+  findAllUsers: [Users!]!
   findOneCookies(id: ID!): Cookies!
+  findOneUsers(id: ID!): Users!
+}
+
+input UserCreateInput {
+  address: String
+  age: Int!
+  country: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  zipCode: String
+}
+
+input UserUpdateInput {
+  address: String
+  age: Int
+  country: String
+  email: String
+  firstName: String
+  lastName: String
+  password: String
+  zipCode: String
+}
+
+type Users {
+  address: String
+  age: Int!
+  country: String!
+  createdAt: DateTime!
+  deletedAt: DateTime
+  email: String!
+  firstName: String!
+  id: String!
+  lastName: String!
+  updatedAt: DateTime
+  zipCode: String
 }
