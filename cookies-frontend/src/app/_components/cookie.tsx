@@ -32,6 +32,7 @@ export function Cookie({
             width="1000"
             height="1000"
             loading="lazy"
+            sizes="(max-width: 768px) 60vw, 10vw"
           />
           <Crown
             className={cn(
