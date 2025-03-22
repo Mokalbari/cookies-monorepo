@@ -1,18 +1,13 @@
-import { bebasNeue } from "@/styles/font"
-import { cn } from "@/utils/utils"
-import Image from "next/image"
+import { Title } from "@/components/ui/title";
+import { bebasNeue } from "@/styles/font";
+import Image from "next/image";
 
 export function FindUsSection() {
   return (
     <>
-      <h2
-        className={cn(
-          "text-4xl sm:text-8xl text-center text-dahlia",
-          bebasNeue.className
-        )}
-      >
+      <Title titleColor="dahlia" titleSize="massive" className="text-center">
         Où nous trouver ?
-      </h2>
+      </Title>
       <div className="flex justify-between items-start mt-8 sm:mt-12 gap-20">
         <div className="text-lg sm:text-2xl max-w-prose space-y-6 sm:space-y-12">
           <p>
@@ -57,5 +52,5 @@ export function FindUsSection() {
         </div>
       </div>
     </>
-  )
+  );
 }
