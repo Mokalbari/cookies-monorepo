@@ -1,6 +1,7 @@
 import { Field, InputType, Int, PartialType } from '@nestjs/graphql';
 import {
   IsEmail,
+  IsEnum,
   IsInt,
   IsOptional,
   IsString,
@@ -10,6 +11,7 @@ import {
   Max,
   Min,
 } from 'class-validator';
+import { UserRole } from './users.entity';
 
 @InputType({ isAbstract: true })
 export abstract class UserDTO {
@@ -37,7 +39,7 @@ export abstract class UserDTO {
   @IsOptional()
   @IsString()
   @Length(5, 100)
-  address: string;
+  address?: string;
 
   @Field(() => String)
   @IsString()
@@ -49,15 +51,23 @@ export abstract class UserDTO {
   @IsString()
   @Length(3, 10)
   @Matches(/^[A-Za-z0-9- ]+$/, { message: 'Invalid zip code format' })
-  zipCode: string;
+  zipCode?: string;
 
   @Field(() => String)
   @IsStrongPassword()
   password: string;
+
+  @Field(() => UserRole, { defaultValue: UserRole.USER })
+  @IsEnum(UserRole)
+  role: UserRole;
 }
 
 @InputType()
 export class UserCreateInput extends UserDTO {}
 
 @InputType()
-export class UserUpdateInput extends PartialType(UserCreateInput) {}
+export class UserUpdateInput extends PartialType(UserCreateInput) {
+  @Field(() => UserRole, { nullable: false, defaultValue: UserRole.USER })
+  @IsEnum(UserRole)
+  role: UserRole;
+}

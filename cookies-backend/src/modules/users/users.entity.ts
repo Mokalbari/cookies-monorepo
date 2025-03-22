@@ -1,4 +1,10 @@
-import { Field, HideField, Int, ObjectType } from '@nestjs/graphql';
+import {
+  Field,
+  HideField,
+  Int,
+  ObjectType,
+  registerEnumType,
+} from '@nestjs/graphql';
 import { TimestampsEntity } from 'src/common/abstract/abstract.entity';
 import {
   Column,
@@ -11,6 +17,16 @@ import {
 } from 'typeorm';
 import { Cookies } from '../cookies/cookies.entity';
 import { Orders } from '../orders/orders.entity';
+
+export enum UserRole {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  BANNED = 'BANNED',
+}
+
+registerEnumType(UserRole, {
+  name: 'UserRole',
+});
 
 @ObjectType()
 @Entity('users')
@@ -48,6 +64,15 @@ export class Users extends TimestampsEntity {
   @HideField()
   @Column({ select: false })
   password: string;
+
+  @Field(() => UserRole)
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.USER,
+    name: 'role',
+  })
+  role: UserRole;
 
   @ManyToMany(() => Cookies)
   @JoinTable({ name: 'favorite_cookies' })
