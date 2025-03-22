@@ -5,7 +5,7 @@ import { tryCatch } from 'src/common/utils/tryCatch';
 import { CookiesService } from 'src/modules/cookies/cookies.service';
 import { cookiesData } from '../lib/cookies-data';
 
-async function seedCookies() {
+async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);
   const cookiesService = app.get(CookiesService);
 
@@ -48,4 +48,4 @@ async function seedCookies() {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-seedCookies();
+bootstrap();

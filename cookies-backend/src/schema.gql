@@ -119,7 +119,14 @@ input UserCreateInput {
   firstName: String!
   lastName: String!
   password: String!
+  role: UserRole! = USER
   zipCode: String
+}
+
+enum UserRole {
+  ADMIN
+  BANNED
+  USER
 }
 
 input UserUpdateInput {
@@ -130,6 +137,7 @@ input UserUpdateInput {
   firstName: String
   lastName: String
   password: String
+  role: UserRole! = USER
   zipCode: String
 }
 
@@ -143,6 +151,7 @@ type Users {
   firstName: String!
   id: String!
   lastName: String!
+  role: UserRole!
   updatedAt: DateTime
   zipCode: String
 }

@@ -1,0 +1,55 @@
+import { Users } from 'src/graphql';
+import { UserRole } from 'src/modules/users/users.entity';
+
+export const usersData: Omit<Users, 'id' | 'createdAt' | 'updatedAt'>[] = [
+  {
+    firstName: 'Lucas',
+    lastName: 'Meyer',
+    age: 36,
+    email: 'lucas.meyer@example.com',
+    address: '123 Maple Street',
+    country: 'France',
+    zipCode: '75001',
+    role: UserRole.ADMIN,
+  },
+  {
+    firstName: 'Laura',
+    lastName: 'Smith',
+    age: 27,
+    email: 'laura.smith@example.com',
+    address: '456 Oak Avenue',
+    country: 'United States',
+    zipCode: '10001',
+    role: UserRole.USER,
+  },
+  {
+    firstName: 'David',
+    lastName: 'Johnson',
+    age: 18,
+    email: 'david.johnson@example.com',
+    address: '789 Pine Road',
+    country: 'United Kingdom',
+    zipCode: 'SW1A 1AA',
+    role: UserRole.USER,
+  },
+  {
+    firstName: 'Emma',
+    lastName: 'Williams',
+    age: 30,
+    email: 'emma.williams@example.com',
+    address: '101 Birch Lane',
+    country: 'Canada',
+    zipCode: 'M4B 1B3',
+    role: UserRole.USER,
+  },
+  {
+    firstName: 'Nathan',
+    lastName: 'Garcia',
+    age: 22,
+    email: 'nathan.garcia@example.com',
+    address: '202 Cedar Court',
+    country: 'Spain',
+    zipCode: '28001',
+    role: UserRole.USER,
+  },
+];

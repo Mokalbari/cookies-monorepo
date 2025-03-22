@@ -14,6 +14,12 @@ export enum OrderStatus {
     PENDING = "PENDING"
 }
 
+export enum UserRole {
+    ADMIN = "ADMIN",
+    BANNED = "BANNED",
+    USER = "USER"
+}
+
 export interface CookieCreateInput {
     description: string;
     imageUrl: string;
@@ -62,6 +68,7 @@ export interface UserCreateInput {
     firstName: string;
     lastName: string;
     password: string;
+    role: UserRole;
     zipCode?: Nullable<string>;
 }
 
@@ -73,6 +80,7 @@ export interface UserUpdateInput {
     firstName?: Nullable<string>;
     lastName?: Nullable<string>;
     password?: Nullable<string>;
+    role: UserRole;
     zipCode?: Nullable<string>;
 }
 
@@ -144,6 +152,7 @@ export interface Users {
     firstName: string;
     id: string;
     lastName: string;
+    role: UserRole;
     updatedAt?: Nullable<DateTime>;
     zipCode?: Nullable<string>;
 }
