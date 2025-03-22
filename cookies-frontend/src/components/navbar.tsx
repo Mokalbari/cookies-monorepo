@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { bebasNeue } from "@/styles/font"
-import { cn } from "@/utils/utils"
-import { Menu, ShoppingCart, X } from "lucide-react"
-import { AnimatePresence, motion } from "motion/react"
-import Image from "next/image"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useState } from "react"
-import { Button } from "./ui/button"
+import { bebasNeue } from "@/styles/font";
+import { cn } from "@/utils/utils";
+import { Menu, ShoppingCart, X } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Button } from "./ui/button";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleMenu = () => {
-    setIsOpen((previousState) => !previousState)
-  }
+    setIsOpen((previousState) => !previousState);
+  };
 
   return (
     <>
@@ -54,22 +54,22 @@ export function Navbar() {
         {isOpen ? <MenuListMobileContainer handleMenu={handleMenu} /> : null}
       </AnimatePresence>
     </>
-  )
+  );
 }
 
 function MenuList({
   handleMenu,
   className,
 }: {
-  handleMenu?: () => void
-  className?: string
+  handleMenu?: () => void;
+  className?: string;
 }) {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const links: Record<"name" | "href", string>[] = [
     { name: "Accueil", href: "/" },
     { name: "A propos", href: "/a-propos" },
     { name: "E-Boutique", href: "/e-shop" },
-  ]
+  ];
 
   return (
     <menu className={cn(className)}>
@@ -79,7 +79,7 @@ function MenuList({
             className={cn(
               "hover:text-dahlia/80 tracking-wider transition-colors",
               pathname === link.href ? "text-dahlia" : "",
-              bebasNeue.className
+              bebasNeue.className,
             )}
             href={link.href}
           >
@@ -88,7 +88,7 @@ function MenuList({
         </li>
       ))}
     </menu>
-  )
+  );
 }
 
 function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
@@ -131,5 +131,5 @@ function MenuListMobileContainer({ handleMenu }: { handleMenu: () => void }) {
         </Button>
       </div>
     </motion.div>
-  )
+  );
 }

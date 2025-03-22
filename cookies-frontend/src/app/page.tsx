@@ -1,5 +1,5 @@
-import { ContentWrapper, PageWrapper } from "@/components/ui/wrapper"
-import { FindUsSection } from "./_components/find-us-section"
+import { ContentWrapper, PageWrapper } from "@/components/ui/wrapper";
+import { FindUsSection } from "./_components/find-us-section";
 
 export default function Page() {
   return (
@@ -8,5 +8,5 @@ export default function Page() {
         <FindUsSection />
       </ContentWrapper>
     </PageWrapper>
-  )
+  );
 }

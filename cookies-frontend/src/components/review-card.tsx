@@ -1,13 +1,13 @@
-import { cn } from "@/utils/utils"
-import { Card } from "./ui/card"
-import { FiveStars } from "./ui/five-stars"
+import { cn } from "@/utils/utils";
+import { Card } from "./ui/card";
+import { FiveStars } from "./ui/five-stars";
 
 interface Props {
-  review: string
-  author: string
-  age: number
-  score: number
-  className?: string
+  review: string;
+  author: string;
+  age: number;
+  score: number;
+  className?: string;
 }
 
 const fakeData: Props = {
@@ -16,7 +16,7 @@ const fakeData: Props = {
   author: "Lucas",
   age: 36,
   score: 4,
-}
+};
 
 export function ReviewCard({
   review = fakeData.review,
@@ -33,5 +33,5 @@ export function ReviewCard({
         {author}, {String(age)} ans
       </div>
     </Card>
-  )
+  );
 }
