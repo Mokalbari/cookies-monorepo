@@ -7,31 +7,39 @@ import { cn } from "@/utils/utils";
 import Image from "next/image";
 
 interface Props {
-  title: string;
+  name: string;
   price: number;
   imageUrl: string;
   description: string;
+  className: string;
 }
 
-export function Cookie({ title, price, imageUrl, description }: Props) {
+export function Cookie({
+  name,
+  price,
+  imageUrl,
+  description,
+  className,
+}: Props) {
   return (
-    <Card className="grid static max-w-[300px]">
+    <Card className={cn("grid static w-[300px]", className)}>
       <div className="absolute top-0 left-[50%] -translate-x-1/2 -translate-y-1/2">
         <div className="max-w-44 relative">
           <Image
             src={imageUrl}
-            alt={`${title}, ${description}`}
+            alt={`${name}, ${description}`}
             width="1000"
             height="1000"
+            loading="lazy"
           />
         </div>
       </div>
-      <div className="place-items-end">
+      <div className="place-self-end">
         <Like />
       </div>
       <div
         className={cn(
-          "place-items-center mt-8 text-charcoal",
+          "place-items-center mt-8 text-charcoal text-center text-pretty",
           bebasNeue.className,
         )}
       >
@@ -42,7 +50,7 @@ export function Cookie({ title, price, imageUrl, description }: Props) {
           titleColor="charcoal"
           titleSize="regular"
         >
-          {title}
+          {name}
         </Title>
         <div className="mt-3 text-2xl">{description}</div>
       </div>

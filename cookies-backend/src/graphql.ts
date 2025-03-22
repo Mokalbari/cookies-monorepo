@@ -140,6 +140,7 @@ export interface IQuery {
     findOneInOrderItems(id: string): OrderItems | Promise<OrderItems>;
     findOneInOrders(id: string): Orders | Promise<Orders>;
     findOneInUsers(id: string): Users | Promise<Users>;
+    findShowcasedCookies(): Nullable<Cookies[]> | Promise<Nullable<Cookies[]>>;
 }
 
 export interface Users {

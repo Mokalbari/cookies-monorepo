@@ -12,4 +12,8 @@ export class CookiesService extends AbstractService<Cookies> {
   ) {
     super(cookiesRepo);
   }
+
+  async findShowcased() {
+    return await this.cookiesRepo.find({ where: { isShowcased: true } });
+  }
 }

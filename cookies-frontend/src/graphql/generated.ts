@@ -189,6 +189,7 @@ export type Query = {
   findOneInOrderItems: OrderItems;
   findOneInOrders: Orders;
   findOneInUsers: Users;
+  findShowcasedCookies?: Maybe<Array<Cookies>>;
 };
 
 
@@ -281,48 +282,52 @@ export type Users = {
   zipCode?: Maybe<Scalars['String']['output']>;
 };
 
-export type MyCookiesQueryVariables = Exact<{ [key: string]: never; }>;
+export type ShowcasedCookiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MyCookiesQuery = { __typename?: 'Query', findAllCookies: Array<{ __typename?: 'Cookies', name: string }> };
+export type ShowcasedCookiesQuery = { __typename?: 'Query', findShowcasedCookies?: Array<{ __typename?: 'Cookies', id: string, name: string, price: number, description?: string | null, imageUrl: string }> | null };
 
 
-export const MyCookiesDocument = gql`
-    query myCookies {
-  findAllCookies(skip: 0, take: 10) {
+export const ShowcasedCookiesDocument = gql`
+    query showcasedCookies {
+  findShowcasedCookies {
+    id
     name
+    price
+    description
+    imageUrl
   }
 }
     `;
 
 /**
- * __useMyCookiesQuery__
+ * __useShowcasedCookiesQuery__
  *
- * To run a query within a React component, call `useMyCookiesQuery` and pass it any options that fit your needs.
- * When your component renders, `useMyCookiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useShowcasedCookiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useShowcasedCookiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useMyCookiesQuery({
+ * const { data, loading, error } = useShowcasedCookiesQuery({
  *   variables: {
  *   },
  * });
  */
-export function useMyCookiesQuery(baseOptions?: Apollo.QueryHookOptions<MyCookiesQuery, MyCookiesQueryVariables>) {
+export function useShowcasedCookiesQuery(baseOptions?: Apollo.QueryHookOptions<ShowcasedCookiesQuery, ShowcasedCookiesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MyCookiesQuery, MyCookiesQueryVariables>(MyCookiesDocument, options);
+        return Apollo.useQuery<ShowcasedCookiesQuery, ShowcasedCookiesQueryVariables>(ShowcasedCookiesDocument, options);
       }
-export function useMyCookiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyCookiesQuery, MyCookiesQueryVariables>) {
+export function useShowcasedCookiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ShowcasedCookiesQuery, ShowcasedCookiesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MyCookiesQuery, MyCookiesQueryVariables>(MyCookiesDocument, options);
+          return Apollo.useLazyQuery<ShowcasedCookiesQuery, ShowcasedCookiesQueryVariables>(ShowcasedCookiesDocument, options);
         }
-export function useMyCookiesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<MyCookiesQuery, MyCookiesQueryVariables>) {
+export function useShowcasedCookiesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ShowcasedCookiesQuery, ShowcasedCookiesQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<MyCookiesQuery, MyCookiesQueryVariables>(MyCookiesDocument, options);
+          return Apollo.useSuspenseQuery<ShowcasedCookiesQuery, ShowcasedCookiesQueryVariables>(ShowcasedCookiesDocument, options);
         }
-export type MyCookiesQueryHookResult = ReturnType<typeof useMyCookiesQuery>;
-export type MyCookiesLazyQueryHookResult = ReturnType<typeof useMyCookiesLazyQuery>;
-export type MyCookiesSuspenseQueryHookResult = ReturnType<typeof useMyCookiesSuspenseQuery>;
-export type MyCookiesQueryResult = Apollo.QueryResult<MyCookiesQuery, MyCookiesQueryVariables>;
+export type ShowcasedCookiesQueryHookResult = ReturnType<typeof useShowcasedCookiesQuery>;
+export type ShowcasedCookiesLazyQueryHookResult = ReturnType<typeof useShowcasedCookiesLazyQuery>;
+export type ShowcasedCookiesSuspenseQueryHookResult = ReturnType<typeof useShowcasedCookiesSuspenseQuery>;
+export type ShowcasedCookiesQueryResult = Apollo.QueryResult<ShowcasedCookiesQuery, ShowcasedCookiesQueryVariables>;

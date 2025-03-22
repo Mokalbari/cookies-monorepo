@@ -109,6 +109,7 @@ type Query {
   findOneInOrderItems(id: ID!): OrderItems!
   findOneInOrders(id: ID!): Orders!
   findOneInUsers(id: ID!): Users!
+  findShowcasedCookies: [Cookies!]
 }
 
 input UserCreateInput {
