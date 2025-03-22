@@ -38,10 +38,9 @@ export async function CookiesSection() {
         Des cookies de patron,
         <br /> pas pour les amateurs
       </Title>
-      <div className="grid max-md:space-y-24 md:grid-cols-3 mt-32">
+      <div className="flex flex-col gap-24 mt-32 items-center md:flex-row">
         {showcasedCookies.map((cookie) => (
           <Cookie
-            className="mx-auto"
             key={cookie.id}
             name={cookie.name}
             price={cookie.price}

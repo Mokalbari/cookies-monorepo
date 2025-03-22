@@ -11,7 +11,7 @@ interface Props {
   price: number;
   imageUrl: string;
   description: string;
-  className: string;
+  className?: string;
 }
 
 export function Cookie({
