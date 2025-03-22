@@ -38,14 +38,15 @@ export async function CookiesSection() {
         Des cookies de patron,
         <br /> pas pour les amateurs
       </Title>
-      <div className="flex flex-col gap-24 mt-32 items-center md:flex-row">
-        {showcasedCookies.map((cookie) => (
+      <div className="relative flex flex-col gap-24 mt-32 items-center md:flex-row">
+        {showcasedCookies.map((cookie, index) => (
           <Cookie
             key={cookie.id}
             name={cookie.name}
             price={cookie.price}
             description={cookie.description!}
             imageUrl={cookie.imageUrl}
+            isFirstChild={index === 0}
           />
         ))}
       </div>

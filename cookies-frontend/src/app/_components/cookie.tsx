@@ -4,6 +4,7 @@ import { Like } from "@/components/ui/like";
 import { Title } from "@/components/ui/title";
 import { bebasNeue } from "@/styles/font";
 import { cn } from "@/utils/utils";
+import { Crown } from "lucide-react";
 import Image from "next/image";
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
   price: number;
   imageUrl: string;
   description: string;
-  className?: string;
+  isFirstChild: boolean;
 }
 
 export function Cookie({
@@ -19,10 +20,10 @@ export function Cookie({
   price,
   imageUrl,
   description,
-  className,
+  isFirstChild,
 }: Props) {
   return (
-    <Card className={cn("grid static w-[300px]", className)}>
+    <Card className="grid static w-[300px]">
       <div className="absolute top-0 left-[50%] -translate-x-1/2 -translate-y-1/2">
         <div className="max-w-44 relative">
           <Image
@@ -31,6 +32,12 @@ export function Cookie({
             width="1000"
             height="1000"
             loading="lazy"
+          />
+          <Crown
+            className={cn(
+              "absolute -top-2 -rotate-45 -left-5",
+              !isFirstChild && "hidden",
+            )}
           />
         </div>
       </div>
