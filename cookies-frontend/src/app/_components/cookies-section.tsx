@@ -24,8 +24,14 @@ export async function CookiesSection() {
 
   if (error || !data.findShowcasedCookies) {
     return (
-      <Card>
-        <div>Il a de grosses noisettes, mais pas de bonnes data</div>
+      <Card className="flex flex-col items-center justify-center max-w-2xl mx-auto">
+        <Title titleSize="regular">Oh non, boss</Title>
+        <div>❓❓❓</div>
+        <div className="mt-4">
+          On a de bons cookies, mais pas de bons serveurs.
+        </div>
+        <div>Viens le retrouver en boutique plutôt...</div>
+        <div>🍪</div>
       </Card>
     );
   }
@@ -44,7 +50,7 @@ export async function CookiesSection() {
             key={cookie.id}
             name={cookie.name}
             price={cookie.price}
-            description={cookie.description!}
+            description={cookie.description ?? ""}
             imageUrl={cookie.imageUrl}
             isFirstChild={index === 0}
           />
