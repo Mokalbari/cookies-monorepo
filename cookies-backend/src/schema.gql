@@ -101,10 +101,10 @@ type Orders {
 }
 
 type Query {
-  findAllCookies: [Cookies!]!
-  findAllOrderItems: [OrderItems!]!
-  findAllOrders: [Orders!]!
-  findAllUsers: [Users!]!
+  findAllCookies(skip: Float!, take: Float!): [Cookies!]!
+  findAllOrderItems(skip: Float!, take: Float!): [OrderItems!]!
+  findAllOrders(skip: Float!, take: Float!): [Orders!]!
+  findAllUsers(skip: Float!, take: Float!): [Users!]!
   findOneInCookies(id: ID!): Cookies!
   findOneInOrderItems(id: ID!): OrderItems!
   findOneInOrders(id: ID!): Orders!

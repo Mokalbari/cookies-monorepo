@@ -132,10 +132,10 @@ export interface Orders {
 }
 
 export interface IQuery {
-    findAllCookies(): Cookies[] | Promise<Cookies[]>;
-    findAllOrderItems(): OrderItems[] | Promise<OrderItems[]>;
-    findAllOrders(): Orders[] | Promise<Orders[]>;
-    findAllUsers(): Users[] | Promise<Users[]>;
+    findAllCookies(skip: number, take: number): Cookies[] | Promise<Cookies[]>;
+    findAllOrderItems(skip: number, take: number): OrderItems[] | Promise<OrderItems[]>;
+    findAllOrders(skip: number, take: number): Orders[] | Promise<Orders[]>;
+    findAllUsers(skip: number, take: number): Users[] | Promise<Users[]>;
     findOneInCookies(id: string): Cookies | Promise<Cookies>;
     findOneInOrderItems(id: string): OrderItems | Promise<OrderItems>;
     findOneInOrders(id: string): Orders | Promise<Orders>;

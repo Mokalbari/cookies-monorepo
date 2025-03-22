@@ -2,6 +2,7 @@
 
 import { bebasNeue } from "@/styles/font";
 import { cn } from "@/utils/utils";
+import { gql, useQuery } from "@apollo/client";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
@@ -10,12 +11,27 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
+const GET_COOKIES = gql`
+  query {
+    findAllCookies(skip: 0, take: 10) {
+      id
+      name
+      price
+      stock
+    }
+  }
+`;
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMenu = () => {
     setIsOpen((previousState) => !previousState);
   };
+
+  const { data } = useQuery(GET_COOKIES);
+
+  console.log("data", data);
 
   return (
     <>
